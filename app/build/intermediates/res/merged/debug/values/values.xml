@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen">
+        <item>720p</item>
+        <item>1080p</item>
+        <item>4K</item>
+    </string-array>
+    <string-array name="screen_value">
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+    </string-array>
+    <string-array name="source">
+        <item>IMAGE</item>
+        <item>VIDEO</item>
+        <item>MRAID</item>
+        <item>ZIP</item>
+        <item>ZIPANDVIDEO</item>
+    </string-array>
+    <string-array name="source_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">AdBootSDK</string>
+    <string name="hello_world">Hello world!</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen">
+        <item>720p</item>
+        <item>1080p</item>
+        <item>4K</item>
+    </string-array>
+    <string-array name="screen_value">
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+    </string-array>
+
+    <string-array name="source">
+        <item>IMAGE</item>
+        <item>VIDEO</item>
+        <item>MRAID</item>
+        <item>ZIP</item>
+        <item>ZIPANDVIDEO</item>
+    </string-array>
+
+    <string-array name="source_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>
