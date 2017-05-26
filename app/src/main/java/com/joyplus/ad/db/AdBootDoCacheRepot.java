@@ -51,7 +51,8 @@ public class AdBootDoCacheRepot {
                             Log.d("report failed");
                         } else {
                             Log.d("report success!");
-                            if (info.getCount() == 0) {//如果count为0则表示上报完成并删除该条上报链接
+                            //如果count为0则表示上报完成并删除该条上报链接
+                            if (info.getCount() == 0) {
                                 AdBootReprtDao.getInstance(mContext).reMove(info);
                             } else {//上报成功一次后将对count值进行一次操作
                                 info.setCount(info.getCount() - 1);

@@ -7,21 +7,7 @@ The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
-* .idea\
-* .idea\.name
-* .idea\AdBootSDK.iml
-* .idea\compiler.xml
-* .idea\copyright\
-* .idea\copyright\profiles_settings.xml
-* .idea\libraries\
-* .idea\libraries\Miaozhen.xml
-* .idea\libraries\android_support_v4.xml
-* .idea\libraries\fasthttp.xml
-* .idea\libraries\mma_android_sdk_v1_3_0.xml
-* .idea\misc.xml
-* .idea\modules.xml
-* .idea\vcs.xml
-* .idea\workspace.xml
+* hs_err_pid6508.log
 * ic_launcher-web.png
 * proguard-project.txt
 
@@ -35,22 +21,36 @@ the .jar file in your project was of an older version than the
 dependency we picked, which could render the project not compileable.
 You can disable the jar replacement in the import wizard and try again:
 
-android-support-v4.jar => com.android.support:support-v4:19.1.0
+android-support-v4.jar => com.android.support:support-v4:19.+
 
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => app\src\main\AndroidManifest.xml
-* assets\ => app\src\main\assets\
-* libs\armeabi\libMMANDKSignature.so => app\src\main\jniLibs\armeabi\libMMANDKSignature.so
-* libs\fasthttp.jar => app\libs\fasthttp.jar
-* libs\Miaozhen.jar => app\libs\Miaozhen.jar
-* libs\mma_android_sdk_v1.3.0.jar => app\libs\mma_android_sdk_v1.3.0.jar
-* res\ => app\src\main\res\
-* src\ => app\src\main\java\
-* src\com\joyplus\ad\config\adbootconfig.properties => app\src\main\resources\com\joyplus\ad\config\adbootconfig.properties
+* AndroidManifest.xml => adBootSDKDemo\src\main\AndroidManifest.xml
+* assets\ => adBootSDKDemo\src\main\assets
+* libs\AdBootSDK.jar => adBootSDKDemo\libs\AdBootSDK.jar
+* libs\armeabi\libMMANDKSignature.so => adBootSDKDemo\src\main\jniLibs\armeabi\libMMANDKSignature.so
+* libs\fasthttp.jar => adBootSDKDemo\libs\fasthttp.jar
+* libs\Miaozhen.jar => adBootSDKDemo\libs\Miaozhen.jar
+* libs\MMAndroid_v1.2.2.jar => adBootSDKDemo\libs\MMAndroid_v1.2.2.jar
+* res\ => adBootSDKDemo\src\main\res\
+* src\ => adBootSDKDemo\src\main\java\
+
+Missing Android Support Repository:
+-----------------------------------
+Some useful libraries, such as the Android Support Library, are
+installed from a special Maven repository, which should be installed
+via the SDK manager.
+
+It looks like this library is missing from your SDK installation at:
+null
+
+To install it, open the SDK manager, and in the Extras category,
+select "Android Support Repository". You may also want to install the
+"Google Repository" if you want to use libraries like Google Play
+Services.
 
 Next Steps:
 -----------
