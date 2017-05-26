@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/request"
+                android:text="保存"/>
+ 		<Button android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/setting"
+                android:text="取消"/>
+    </LinearLayout>
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+             <TextView android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:text="请求地址"/>
+    <Spinner  android:id="@+id/url" 
+        android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:entries="@array/url_value"/>
+	
+    <TextView android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:text="广告位ID"/>
+    <Spinner  android:id="@+id/publicid" 
+        android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:entries="@array/publicid_value"/>
+    
+    <TextView android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:text="ds"/>
+    <Spinner  android:id="@+id/ds" 
+        android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:entries="@array/ds_value"/>
+    
+    <TextView android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:text="dm"/>
+    <Spinner  android:id="@+id/dm" 
+        android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:entries="@array/dm_value"/>
+    
+    <TextView android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:text="MAC地址"/>
+    <Spinner  android:id="@+id/mac" 
+        android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:entries="@array/mac_value"/>
+    
+    <TextView android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:text="屏幕大小（720p－001，1080p-002，4K-003）"/>
+    <Spinner  android:id="@+id/screen" 
+        android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:entries="@array/screen"/>
+    
+    
+    <TextView android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:text="支持的素材类型 IMAGE－1，ZIP－4，VIDEO－2，MRAID－3，ZIPANDVIDEO－5"/>
+    <Spinner android:id="@+id/source" 
+        android:layout_width="match_parent"
+        	  android:layout_height="wrap_content"
+        	  android:entries="@array/source"/>
+    
+        </LinearLayout>
+    </ScrollView>
+    
+   
+</LinearLayout>
