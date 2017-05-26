@@ -1,10 +1,9 @@
 package com.joyplus.ad;
 
-import com.joyplus.ad.AdSDKManager.CUSTOMTYPE;
+import android.content.Context;
+
 import com.joyplus.ad.config.AdBootExternalConfig;
 import com.joyplus.ad.data.Des;
-
-import android.content.Context;
 
 /*Config of this AdBoot
  * define by Jas@20131125*/
@@ -19,10 +18,11 @@ public class AdConfig {
     private final static String mURL_KONKA = "D5313CEAA0E07E98E875117C601ABF26D0248FA1ED3572AC14A3CB11726A66904709C8F629FDB48C887DBE3AC49F4EDD0B3856DDE8B29AD8D0248FA1ED3572ACAB0CF9C0615443C8FE7A9A05FF18704BC1C23F62DF2D1CCC17DFA7815949350B";
     private final static String mURL_JOYPLUS = "D5313CEAA0E07E98E875117C601ABF26D0248FA1ED3572ACAE7D7F3BBCD40861110294B2C80228A23BBB1702421FFB63C0857980F9D4EE9174A9ABD4EDFBE4C14585B0F8379DFDEFB14531E5B7C4FC0FFE41A3942912F60A";
     private static String mBaseURL;
-    private static String mBaseReportURL;
+    private static String mBaseReportURL = "test";
+    private static Context mContext;
     //add by Jas@20140430 for admaster config
     private final static String mDebugBaseURL_admaster = "http://advapi.yue001.com/advapi/config/admaster";
-    private final static String mURL_KONKA_admaster = "http://advapikj.joyplus.tv/advapi/config/admaster";
+    private final static String mURL_KONKA_admaster = "/advapi/config/admaster";
     private final static String mURL_JOYPLUS_admaster = "http://advapi.joyplus.tv/advapi/config/admaster";
     private static String mBaseURL_admaster = "";
     //end add by Jas
@@ -36,6 +36,8 @@ public class AdConfig {
     private static boolean REQUESTAWAYS = true;
     private static final String SDKVersion = "3.0";
 
+    public static final String PUSH_NOW = "push_now";
+
     public static String GetSDKVersion() {
         return SDKVersion;
     }
@@ -45,17 +47,23 @@ public class AdConfig {
     }
 
     public static void Init(Context context) {
+        mContext = context;
         if (AdSDKManager.IsInited()) return;
         if (AdSDKFeature.DEBUG) {//advtest
             mBaseURL = (new Des()).strDec(mDebugBaseURL, GetCompany(), "", "");
             mBaseURL_admaster = mDebugBaseURL_admaster;
             mBaseReportURL = mURL_KONKA_Report;
         } else {
-            if (AdSDKManager.GetCustomType() == CUSTOMTYPE.KONKA) {
+            if (AdSDKManager.GetCustomType() == AdSDKManager.CUSTOMTYPE.KONKA) {
                 mBaseURL = (new Des()).strDec(mURL_KONKA, GetCompany(), "", "");
-                mBaseURL_admaster = mURL_KONKA_admaster;
+                String baseConfig = AdBootExternalConfig.getInstance(context).GetBaseConfigURL("");
+                if(baseConfig!=null) {
+                    mBaseURL_admaster = baseConfig + mURL_KONKA_admaster;
+                }else{
+                    mBaseURL_admaster = "";
+                }
                 mBaseReportURL = mURL_KONKA_Report;
-            } else if (AdSDKManager.GetCustomType() == CUSTOMTYPE.HAIER) {
+            } else if (AdSDKManager.GetCustomType() == AdSDKManager.CUSTOMTYPE.HAIER) {
                 mBaseURL = (new Des()).strDec(mURL_JOYPLUS, GetCompany(), "", "");
                 mBaseURL_admaster = mURL_JOYPLUS_admaster;
                 mBaseReportURL = mURL_KONKA_Report;
@@ -124,6 +132,11 @@ public class AdConfig {
         return MAXSIZE;
     }
 
+    public static void setMAXSIZE(int maxsize){
+        MAXSIZE = maxsize;
+        //AdBootExternalConfig.getInstance(mContext).setMaxSizeConfig(maxsize);
+    }
+
     public static int GetCacheSize() {
         return CACHESIZE;
     }
@@ -137,8 +150,8 @@ public class AdConfig {
     }
 
     public static void setBaseURL(String url) {
-        if (AdSDKFeature.DEBUG) {
+       // if (AdSDKFeature.DEBUG) {
             mBaseURL = url;
-        }
+       // }
     }
 }

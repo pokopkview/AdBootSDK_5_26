@@ -1,5 +1,15 @@
 package com.joyplus.ad.data;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.text.TextUtils;
+
+import com.joyplus.ad.AdConfig;
+import com.joyplus.ad.AdSDKFeature;
+import com.joyplus.ad.PublisherId;
+import com.joyplus.ad.config.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,16 +18,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
-
-import com.joyplus.ad.AdConfig;
-import com.joyplus.ad.AdSDKFeature;
-import com.joyplus.ad.PublisherId;
-import com.joyplus.ad.config.Log;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.text.TextUtils;
 
 /*Define by Jas@20131125
  * this use to implementation Interface for AdBootFileManager*/
@@ -129,6 +129,9 @@ public class AdFileServer {
         synchronized (mObject) {
             try {
                 File data = new File(GetBasePath(), id.GetPublisherId() + File.separator + filename);
+                if(data.exists()){
+                    data.mkdirs();
+                }
                 FileInputStream fis = new FileInputStream(data);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 Object file = (Object) ois.readObject();

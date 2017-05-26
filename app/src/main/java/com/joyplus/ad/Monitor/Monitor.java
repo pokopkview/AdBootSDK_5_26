@@ -9,6 +9,7 @@ import com.joyplus.ad.AdSDKFeature;
 import com.joyplus.ad.data.MD5Util;
 import com.joyplus.ad.data.TRACKINGURL;
 import com.joyplus.ad.data.TRACKINGURL.TYPE;
+import com.joyplus.ad.db.AdBootImpressionInfo;
 import com.joyplus.ad.mode.ReportMode;
 
 public class Monitor extends ReportMode {
@@ -33,6 +34,7 @@ public class Monitor extends ReportMode {
     private String ADMASTER_SN = "";//
     private String ADMASTER_IMEI = "";//imei
     private String ADMASTER_OS = "0";//os
+    private AdBootImpressionInfo info;
 
     public boolean CheckMonitor() {
         if (mTrackingUrl == null || mTrackingUrl.size() <= 0) return false;
@@ -44,6 +46,14 @@ public class Monitor extends ReportMode {
         return false;
     }
 
+
+    public AdBootImpressionInfo GetInfo() {
+        return info;
+    }
+
+    public void SetInfo(AdBootImpressionInfo info) {
+        this.info = info;
+    }
 
     public String getADMASTER_SN() {
         return ADMASTER_SN;

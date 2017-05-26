@@ -12,7 +12,7 @@ public class TRACKINGURL implements Serializable {
 
     public enum TYPE {
         UNKNOW("unknow"),
-        MIAOZHEN("miaozhen"), //
+        MIAOZHEN(" "), //
         IRESEARCH("iresearch"),//
         ADMASTER("admaster"), //ADMsater
         NIELSEN("nielsen"),  //

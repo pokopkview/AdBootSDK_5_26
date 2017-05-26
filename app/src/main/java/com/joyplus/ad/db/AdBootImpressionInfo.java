@@ -9,6 +9,10 @@ import com.joyplus.ad.data.ADBOOT;
 import com.joyplus.ad.data.TRACKINGURL;
 import com.joyplus.ad.data.TRACKINGURL.TYPE;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class AdBootImpressionInfo {
     public int _ID = -1;
     public String publisher_id = "";
@@ -85,6 +89,68 @@ public class AdBootImpressionInfo {
         Values.put("Count", info.Count);
         return Values;
     }
+    public static ContentValues GetNewContentValues(AdBootImpressionInfo info, int type){
+        if (info == null || !info.IsAviable()) return null;
+        ContentValues values = new ContentValues();
+        if(type == 0){//self
+            values.put("publisher_id",info.publisher_id);
+            values.put("report_url",info.mImpressionUrl);
+            values.put("Count", 0);
+            values.put("type",0);
+        }else if(type == 1){
+            values.put("publisher_id",info.publisher_id);
+            values.put("report_url",info.admaster);
+            values.put("Count", 0);
+            values.put("type",1);
+        }else if(type == 2){
+            values.put("publisher_id",info.publisher_id);
+            values.put("report_url",info.miaozhen);
+            values.put("Count", 0);
+            values.put("type",2);
+        }else if(type == 3){
+            values.put("publisher_id",info.publisher_id);
+            values.put("report_url",info.nielsen);
+            values.put("Count", 0);
+            values.put("type",1);
+        }else if(type == 4){
+            values.put("publisher_id",info.publisher_id);
+            values.put("report_url",info.iresearch);
+            values.put("Count", 0);
+            values.put("type",1);
+        }
+        return values;
+    }
+    public static ContentValues GetNewContentValues(AdBootReportInfo info){
+        ContentValues values = new ContentValues();
+        values.put("publisher_id",info.getPublishID());
+        values.put("report_url",info.getReportInfo());
+        values.put("Count", info.getCount());
+        values.put("type",info.getType());
+        return values;
+    }
+
+    public static AdBootReportInfo GetAdBootReportInfo(Cursor cursor){
+        if(cursor == null){return null;}
+        AdBootReportInfo info = new AdBootReportInfo();
+        info.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+        info.setPublishID(cursor.getString(cursor.getColumnIndex("publisher_id")));
+        info.setReportInfo(cursor.getString(cursor.getColumnIndex("report_url")));
+        info.setType(cursor.getInt(cursor.getColumnIndex("type")));
+        info.setCount(cursor.getInt(cursor.getColumnIndex("Count")));
+        String date = cursor.getString(cursor.getColumnIndex("create_date"));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = null;
+        try {
+            date1 = simpleDateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(null != date1) {
+            info.setCreateTime(date1);
+        }
+        return info;
+    }
+
 
     public static AdBootImpressionInfo GetAdBootImpressionInfo(Cursor c) {
         if (c == null) return null;

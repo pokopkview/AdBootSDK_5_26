@@ -1,6 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
-        "source": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "/Users/zhanghongwei/Downloads/AdBootSDK/app/build/intermediates/res/merged/debug/layout/activity_setting.xml",
+        "source": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/layout/activity_setting.xml"
+    },
+    {
+        "merged": "/Users/zhanghongwei/Downloads/AdBootSDK/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/layout/activity_main.xml"
     }
 ]

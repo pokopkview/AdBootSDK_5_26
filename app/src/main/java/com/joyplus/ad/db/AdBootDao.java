@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class AdBootDao {
-    private final static boolean DEBUG = false;
+    private final static boolean DEBUG = true;
     //public  static final int MAX = 5;
     private static AdBootDao dao = null;
     private Context context;
@@ -57,6 +57,39 @@ public class AdBootDao {
         }
         return false;
     }
+
+    public synchronized boolean InsertOneInfo(AdBootImpressionInfo info,int i) {
+        if (DEBUG) Log.d("Jas", "InsertOneInfo1-->" + info.toString());
+        ArrayList<AdBootImpressionInfo> Info = GetAllReport();
+        SQLiteDatabase database = getConnection();
+        try {
+            if(Info != null) {
+                for (AdBootImpressionInfo infos : Info) {
+                    if (info.mImpressionUrl.equals(infos.mImpressionUrl)) {
+                        infos.Count++;
+                        return database.update("adbootReport_info", AdBootImpressionInfo.GetContentValues(infos), "mImpressionUrl=?", new String[]{infos.mImpressionUrl}) > 0;
+                    }
+                }
+            }
+                ContentValues Value = AdBootImpressionInfo.GetContentValues(info);
+                if (Value != null) {
+                    return database.insert("adbootReport_info", null, Value) > 0;
+                }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (null != database) {
+                database.close();
+            }
+        }
+        return false;
+    }
+
+
+
+
+
 
     public synchronized AdBootImpressionInfo GetFirst() {
         SQLiteDatabase database = getConnection();

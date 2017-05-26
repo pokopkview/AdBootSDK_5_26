@@ -73,7 +73,7 @@ public class AdRequest {
         if (Debug) Log.d("o=" + PhoneManager.getInstance().GetDeviceId1());
         b.appendQueryParameter("o2", PhoneManager.getInstance().GetDeviceId2());
         if (Debug) Log.d("o2=" + PhoneManager.getInstance().GetDeviceId2());
-        b.appendQueryParameter("t", Long.toString(System.currentTimeMillis()));
+        b.appendQueryParameter("t", Long.toString(System.currentTimeMillis()));//系统当前时间
         if (Debug) Log.d("t=" + Long.toString(System.currentTimeMillis()));
         b.appendQueryParameter("connection_type", PhoneManager.getInstance().GetConnectType().toString());
         if (Debug)

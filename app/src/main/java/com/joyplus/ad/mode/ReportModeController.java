@@ -1,15 +1,13 @@
 package com.joyplus.ad.mode;
 
-import java.util.Collection;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 
 import com.joyplus.ad.config.Log;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.Message;
+import java.util.Collection;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public abstract class ReportModeController {
@@ -58,7 +56,7 @@ public abstract class ReportModeController {
     }
 
     private ReportModeResource mReportResource = new ReportModeResource();
-    ;
+
     private ReportController mController;
 
     ///////////////////////////////////////////////////////////////
@@ -118,10 +116,10 @@ public abstract class ReportModeController {
         }
     }
 
-    ;
 
     /////////////////
     public boolean addReportUri(final ReportMode report) {
+        System.out.println("prepDownload7");
         if (isTearDown() || mReportResource == null) return false;
         checkController();
         return mReportResource.addReportUri(report);

@@ -44,9 +44,9 @@ public class AdBootServer extends Service {
                 while (it.hasNext()) {
                     AdBootImpressionInfo info = it.next();
                     if (CheckAdBootImpressionInfo(info)) {
-                        mAdBootDao.InsertOneInfo(info);
-                        info.Count++;
-                        Dao.UpdateOneInfo(info);
+                            mAdBootDao.InsertOneInfo(info);
+                            info.Count++;
+                            Dao.UpdateOneInfo(info);
                     } else {//location file has be removed.
                         Dao.Remove(info.publisher_id);
                     }
@@ -70,6 +70,4 @@ public class AdBootServer extends Service {
         if (remove && Resoult) FileUtils.deleteFile(file);
         return Resoult;
     }
-
-
 }

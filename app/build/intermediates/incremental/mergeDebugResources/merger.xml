@@ -1,34 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main$Generated" generated="true"><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res"/><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\build\generated\res\rs\debug"/><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\debug\res"/></dataSet><dataSet config="main" generated-set="main$Generated"><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res"><file name="ic_launcher" path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher" path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\drawable-xxhdpi\ic_launcher.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="activity_main" path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="main" path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\menu\main.xml" qualifiers="" type="menu"/><file path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\values\arrays.xml" qualifiers=""><string-array name="source">
-        <item>IMAGE</item>
-        <item>VIDEO</item>
-        <item>MRAID</item>
-        <item>ZIP</item>
-        <item>ZIPANDVIDEO</item>
+<merger version="3"><dataSet config="main$Generated" generated="true"><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res"/><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/build/generated/res/rs/debug"/><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/build/generated/res/resValues/debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/debug/res"/></dataSet><dataSet config="main" generated-set="main$Generated"><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res"><file name="ic_launcher" path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/drawable-hdpi/ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/drawable-mdpi/ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/drawable-xhdpi/ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher" path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/drawable-xxhdpi/ic_launcher.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="activity_main" path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/layout/activity_main.xml" qualifiers="" type="layout"/><file name="activity_setting" path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/layout/activity_setting.xml" qualifiers="" type="layout"/><file name="main" path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/menu/main.xml" qualifiers="" type="menu"/><file path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml" qualifiers=""><string-array name="screen">
+        <item>无</item>
+        <item>720p</item>
+        <item>1080p</item>
+        <item>4K</item>
+    </string-array><string-array name="ds_value">
+        <item>K1_ds1</item>
+        <item>K2_ds1</item>
+        <item>K1_ds2</item>
+        <item>K2_ds2</item>
+        <item>ds1</item>
+        <item>ds2</item>
+    </string-array><string-array name="screen_value">
+        <item/>
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+    </string-array><string-array name="mac_value">
+        <item>00:00:00:00:00:00</item>
+        <item>00:00:00:00:00:01</item>
+        <item>00:00:00:00:00:02</item>
+        <item>00:00:00:00:00:03</item>
+        <item>00:00:00:00:00:04</item>
+    </string-array><string-array name="url_value">
+        <item>http://106.75.59.170/advapi/v1/mdrequest</item>
+        <item>http://ads.joyplus.tv/</item>
+        <item>http://106.75.54.126/advapi/v1/mdrequest</item>
+        <item>http://www.showkey.com:3099/advapi/v1/mdrequest</item>
+        <item>http://advapikj.joyplus.tv/advapi/v1/mdrequest</item>
+        <item>http://42.62.105.254/advapi/v1/mdrequest</item>
+        <item>http://192.168.62.222/test.php</item>
+    </string-array><string-array name="dm_value">
+        <item>rtd2995d</item>
+        <item>dm2</item>
     </string-array><string-array name="source_value">
+        <item/>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
-    </string-array><string-array name="screen_value">
-        <item>001</item>
-        <item>002</item>
-        <item>003</item>
-    </string-array><string-array name="screen">
-        <item>720p</item>
-        <item>1080p</item>
-        <item>4K</item>
-    </string-array></file><file path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\values\dimens.xml" qualifiers=""><dimen name="activity_horizontal_margin">16dp</dimen><dimen name="activity_vertical_margin">16dp</dimen></file><file path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\values\strings.xml" qualifiers=""><string name="action_settings">Settings</string><string name="app_name">AdBootSDK</string><string name="hello_world">Hello world!</string></file><file path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppBaseTheme" parent="android:Theme.Light">
+    </string-array><string-array name="source">
+        <item>VIDEO</item>
+        <item>IMAGE</item>
+        <item>MRAID</item>
+        <item>ZIP</item>
+        <item>ZIPANDVIDEO</item>
+    </string-array><string-array name="publicid_value">
+        <item>1cfd16b774e82ac337fc641a7b28be6c</item>
+        <item>4ffede51ab00a31add8b33cd866166ff</item>
+        <item>c1bb6430e4fb26c40fc9d74c399e041a</item>
+        <item>cc8e15cbedf871a5bc495d679f426f7c</item>
+        <item>2eb8793f8c137f4de368af430902fa46</item>
+        <item>7e6772a3aaa9c04aebb2e7ee79e8b433</item>
+        <item>5b5b78bad6b2b48635b54bdd065624b8</item>
+        <item>9ab2f5d63e14214e37937a5deecdf631</item>
+        <item>ca24c2c91dff49c0dd432191a2c51a0c</item>
+        <item>c4b26b14a4ef7fdb9f3f0fbb06dfed92</item>
+        <item>f3cdb0e059c739bb0403f6379e90aa64</item>
+        <item>cb0fca3e43483f0849dc9069cc7b4a7e</item>
+        <item>c4b26b14a4ef7fdb9f3f0fbb06dfed92</item>
+    </string-array></file><file path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/dimens.xml" qualifiers=""><dimen name="activity_vertical_margin">16dp</dimen><dimen name="activity_horizontal_margin">16dp</dimen></file><file path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/strings.xml" qualifiers=""><string name="hello_world">Hello world!</string><string name="action_settings">Settings</string><string name="app_name">AdBootSDK</string></file><file path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/styles.xml" qualifiers=""><style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style><style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
-    </style><style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style></file><file path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\values-sw720dp-land\dimens.xml" qualifiers="sw720dp-land-v13"><dimen name="activity_horizontal_margin">128dp</dimen></file><file path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\values-v11\styles.xml" qualifiers="v11"><style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+    </style></file><file path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values-sw720dp-land/dimens.xml" qualifiers="sw720dp-land-v13"><dimen name="activity_horizontal_margin">128dp</dimen></file><file path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values-v11/styles.xml" qualifiers="v11"><style name="AppBaseTheme" parent="android:Theme.Holo.Light">
         <!-- API 11 theme customizations can go here. -->
-    </style></file><file path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\main\res\values-v14\styles.xml" qualifiers="v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    </style></file><file path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values-v14/styles.xml" qualifiers="v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->
-    </style></file></source><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\build\generated\res\rs\debug"/><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="C:\Users\UPC\AndroidStudioProjects\AdBootSDK\app\src\debug\res"/></dataSet><mergedItems/></merger>
+    </style></file></source><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/build/generated/res/rs/debug"/><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/build/generated/res/resValues/debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="/Users/zhanghongwei/Downloads/AdBootSDK/app/src/debug/res"/></dataSet><mergedItems/></merger>

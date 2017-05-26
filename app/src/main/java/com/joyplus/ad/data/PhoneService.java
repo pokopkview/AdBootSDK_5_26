@@ -1,17 +1,5 @@
 package com.joyplus.ad.data;
 
-import java.lang.reflect.Constructor;
-import java.math.BigInteger;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.security.MessageDigest;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.UUID;
-
-import com.joyplus.ad.PhoneManager.CONNECTION_TYPE;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,6 +14,18 @@ import android.provider.Settings.Secure;
 import android.telephony.TelephonyManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import com.joyplus.ad.PhoneManager.CONNECTION_TYPE;
+
+import java.lang.reflect.Constructor;
+import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.security.MessageDigest;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.UUID;
 
 
 public class PhoneService {
@@ -50,7 +50,7 @@ public class PhoneService {
                 return CONNECTION_TYPE.WIMAX;
             } else if (netType == ConnectivityManager.TYPE_MOBILE) {
                 switch (netSubtype) {
-                    case TelephonyManager.NETWORK_TYPE_1xRTT:
+                    case  TelephonyManager.NETWORK_TYPE_1xRTT:
                         return CONNECTION_TYPE.MOBILE_1xRTT;
                     case TelephonyManager.NETWORK_TYPE_CDMA:
                         return CONNECTION_TYPE.MOBILE_CDMA;
@@ -130,17 +130,21 @@ public class PhoneService {
 
     public String getDefaultUserAgentString(Context context) {
         try {
-            Constructor<WebSettings> constructor = WebSettings.class
-                    .getDeclaredConstructor(Context.class, WebView.class);
-            constructor.setAccessible(true);
             try {
-                WebSettings settings = constructor.newInstance(context, null);
-                return settings.getUserAgentString();
-            } finally {
-                constructor.setAccessible(false);
+                Constructor<WebSettings> constructor = WebSettings.class
+                        .getDeclaredConstructor(Context.class, WebView.class);
+                constructor.setAccessible(true);
+                try {
+                    WebSettings settings = constructor.newInstance(context, null);
+                    return settings.getUserAgentString();
+                } finally {
+                    constructor.setAccessible(false);
+                }
+            } catch (Exception e) {
+                return new WebView(context).getSettings().getUserAgentString();
             }
-        } catch (Exception e) {
-            return new WebView(context).getSettings().getUserAgentString();
+        }catch (Exception e){
+            return e.getMessage();
         }
     }
 
@@ -185,8 +189,7 @@ public class PhoneService {
     public String getMacAddress(Context context) {
         String macAddress = "";
         WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo info = (null == wifiMgr ? null : wifiMgr
-                .getConnectionInfo());
+        WifiInfo info = (null == wifiMgr ? null : wifiMgr.getConnectionInfo());
         if (info != null) {
             macAddress = info.getMacAddress();
         }

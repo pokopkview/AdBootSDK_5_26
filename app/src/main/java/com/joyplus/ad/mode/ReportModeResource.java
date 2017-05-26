@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.joyplus.ad.config.Log;
-
 
 public class ReportModeResource {
     private List<ReportMode> mReportUri = new ArrayList<ReportMode>();
@@ -37,6 +35,7 @@ public class ReportModeResource {
 
     ////////////////////////////////////////////////////////////////
     public boolean addReportUri(ReportMode reportMode) {
+        System.out.println("prepDownload8");
         if (addReportMode(reportMode)) {
             notifyReport();
             return true;

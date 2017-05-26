@@ -1,226 +1,216 @@
 [
     {
-        "outputFile": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "outputFile": "/Users/zhanghongwei/Downloads/AdBootSDK/app/build/intermediates/res/merged/debug/values/values.xml",
         "map": [
             {
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endLine": 6,
+                    "endLine": 5,
                     "endColumn": 19,
-                    "endOffset": 180
+                    "endOffset": 160
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\arrays.xml",
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 165,
+                    "endLine": 13,
+                    "endColumn": 19,
+                    "endOffset": 377
+                },
+                "from": {
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 382,
+                    "endLine": 20,
+                    "endColumn": 19,
+                    "endOffset": 628
+                },
+                "from": {
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 633,
+                    "endLine": 35,
+                    "endColumn": 19,
+                    "endOffset": 1391
+                },
+                "from": {
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml",
                     "position": {
-                        "startLine": 2,
+                        "startLine": 58,
                         "startColumn": 4,
-                        "startOffset": 55,
-                        "endLine": 6,
+                        "startOffset": 1546,
+                        "endLine": 72,
                         "endColumn": 19,
-                        "endOffset": 180
+                        "endOffset": 2317
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 7,
+                    "startLine": 36,
                     "startColumn": 4,
-                    "startOffset": 185,
-                    "endLine": 11,
+                    "startOffset": 1396,
+                    "endLine": 41,
                     "endColumn": 19,
-                    "endOffset": 314
+                    "endOffset": 1544
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\arrays.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 185,
-                        "endLine": 11,
-                        "endColumn": 19,
-                        "endOffset": 314
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 12,
+                    "startLine": 42,
                     "startColumn": 4,
-                    "startOffset": 319,
-                    "endLine": 18,
+                    "startOffset": 1549,
+                    "endLine": 47,
                     "endColumn": 19,
-                    "endOffset": 506
+                    "endOffset": 1694
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\arrays.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 320,
-                        "endLine": 19,
-                        "endColumn": 19,
-                        "endOffset": 507
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 19,
+                    "startLine": 48,
                     "startColumn": 4,
-                    "startOffset": 511,
-                    "endLine": 25,
+                    "startOffset": 1699,
+                    "endLine": 54,
                     "endColumn": 19,
-                    "endOffset": 680
+                    "endOffset": 1886
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\arrays.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 513,
-                        "endLine": 27,
-                        "endColumn": 19,
-                        "endOffset": 682
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 26,
+                    "startLine": 55,
                     "startColumn": 4,
-                    "startOffset": 685,
+                    "startOffset": 1891,
+                    "endLine": 62,
+                    "endColumn": 19,
+                    "endOffset": 2076
+                },
+                "from": {
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 63,
+                    "startColumn": 4,
+                    "startOffset": 2081,
+                    "endLine": 71,
+                    "endColumn": 19,
+                    "endOffset": 2551
+                },
+                "from": {
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/arrays.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 72,
+                    "startColumn": 4,
+                    "startOffset": 2556,
                     "endColumn": 57,
-                    "endOffset": 738
+                    "endOffset": 2609
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\dimens.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 89,
-                        "endColumn": 57,
-                        "endOffset": 142
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/dimens.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 27,
+                    "startLine": 73,
                     "startColumn": 4,
-                    "startOffset": 743,
+                    "startOffset": 2614,
                     "endColumn": 55,
-                    "endOffset": 794
+                    "endOffset": 2665
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\dimens.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 147,
-                        "endColumn": 55,
-                        "endOffset": 198
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/dimens.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 28,
+                    "startLine": 74,
                     "startColumn": 4,
-                    "startOffset": 799,
+                    "startOffset": 2670,
                     "endColumn": 52,
-                    "endOffset": 847
+                    "endOffset": 2718
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 103,
-                        "endColumn": 52,
-                        "endOffset": 151
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/strings.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 29,
+                    "startLine": 75,
                     "startColumn": 4,
-                    "startOffset": 852,
+                    "startOffset": 2723,
                     "endColumn": 46,
-                    "endOffset": 894
+                    "endOffset": 2765
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 56,
-                        "endColumn": 46,
-                        "endOffset": 98
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/strings.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 30,
+                    "startLine": 76,
                     "startColumn": 4,
-                    "startOffset": 899,
+                    "startOffset": 2770,
                     "endColumn": 52,
-                    "endOffset": 947
+                    "endOffset": 2818
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 156,
-                        "endColumn": 52,
-                        "endOffset": 204
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/strings.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 31,
+                    "startLine": 77,
                     "startColumn": 4,
-                    "startOffset": 952,
-                    "endLine": 37,
+                    "startOffset": 2823,
+                    "endLine": 83,
                     "endColumn": 12,
-                    "endOffset": 1238
+                    "endOffset": 3109
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\styles.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 186,
-                        "endLine": 12,
-                        "endColumn": 12,
-                        "endOffset": 472
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/styles.xml"
                 }
             },
             {
                 "to": {
-                    "startLine": 38,
+                    "startLine": 84,
                     "startColumn": 4,
-                    "startOffset": 1243,
-                    "endLine": 40,
+                    "startOffset": 3114,
+                    "endLine": 86,
                     "endColumn": 12,
-                    "endOffset": 1398
+                    "endOffset": 3269
                 },
                 "from": {
-                    "file": "C:\\Users\\UPC\\AndroidStudioProjects\\AdBootSDK\\app\\src\\main\\res\\values\\styles.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 510,
-                        "endLine": 17,
-                        "endColumn": 12,
-                        "endOffset": 665
-                    }
+                    "file": "/Users/zhanghongwei/Downloads/AdBootSDK/app/src/main/res/values/styles.xml"
                 }
             }
         ]

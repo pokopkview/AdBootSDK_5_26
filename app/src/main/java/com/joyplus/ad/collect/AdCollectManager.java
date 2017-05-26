@@ -58,7 +58,7 @@ public class AdCollectManager {
         if (!TextUtils.isEmpty(url)) {
             AdReportManager ad = AdReportManager.getInstance();
             if (ad != null) {
-                Report report = new Report();
+                Report report = new Report(mContext);
                 report.SetIMPRESSIONURL(AdCustomManagerCompat.createIMPRESSIONURL(url));
                 ad.AddReport(report);
                 return true;

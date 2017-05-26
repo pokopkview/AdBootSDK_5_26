@@ -2,10 +2,14 @@ package com.joyplus.ad.report;
 
 import java.util.List;
 
+import com.joyplus.ad.AdConfig;
 import com.joyplus.ad.AdSDKManager;
 import com.joyplus.ad.AdSDKManagerException;
 import com.joyplus.ad.HttpManager;
 import com.joyplus.ad.config.Log;
+import com.joyplus.ad.db.AdBootReportInfo;
+import com.joyplus.ad.db.AdBootReprtDao;
+import com.joyplus.ad.db.AdBootTempDao;
 import com.joyplus.ad.mode.ReportModeController;
 
 import android.content.Context;
@@ -65,11 +69,17 @@ public class AdReportManager extends ReportModeController {
     }
 
     private void ReportService(Report report) {
+
         while ((report != null) && report.CanReport()) {
             try {
                 String url = report.GetIMPRESSIONURL().URL;
                 Log.d("ReportService-->" + url);
-                HttpManager.ReportServiceOneTime(url);
+                boolean isSuccess = HttpManager.ReportServiceOneTime(url);
+                if(!isSuccess){
+                    Log.d("push_fail");
+                    //放入新的数据库，来对失败的链接进行管理并完成上报
+                    AdBootReprtDao.getInstance(mContext).InsertOneInfo(report.GetmInfo(),0);
+                }
             } catch (Throwable e) {
                 // TODO Auto-generated catch block
                 Log.d("ReportService fail-->" + e.toString());

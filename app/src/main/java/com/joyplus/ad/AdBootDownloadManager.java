@@ -1,7 +1,5 @@
 package com.joyplus.ad;
 
-import java.util.List;
-
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -19,7 +17,9 @@ import com.joyplus.ad.db.AdBootImpressionInfo;
 import com.joyplus.ad.db.AdBootTempDao;
 import com.joyplus.ad.mode.inf.iDownloaderListener;
 
-import javax.naming.Context;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class AdBootDownloadManager implements iDownloaderListener {
 
@@ -53,7 +53,10 @@ public class AdBootDownloadManager implements iDownloaderListener {
             return;
         }
         mLastADBOOT = (ADBOOT) AdFileManager.getInstance().readSerializableData(name, id);
+        //mLastADBOOT = null;
         mCurrentADBOOT = adboot;
+        System.out.println(adboot.toString());
+        android.util.Log.i("test",mCurrentADBOOT.toString());
         AdFileManager.getInstance().writeSerializableData(name, mCurrentADBOOT, id);
         //AdFileManager.getInstance().ReSetNum(id);
         if (mCurrentADBOOT == null) return;
@@ -77,7 +80,9 @@ public class AdBootDownloadManager implements iDownloaderListener {
         if (mLastADBOOT != null) Log.d("mLastADBOOT=" + mLastADBOOT.toString());
         else Log.d("mLastADBOOT == null");
         //add by Jas for report
-        prepReport(id.GetPublisherId());
+        if(!AdBootDataUtil.getPushMode().equals(AdConfig.PUSH_NOW)) {
+            prepReport(id.GetPublisherId());
+        }
         prepDownload();
     }
 
@@ -112,6 +117,7 @@ public class AdBootDownloadManager implements iDownloaderListener {
     }
 
     private void prepDownload() {
+        System.out.println("prepDownload");
         prepDownloadFirst();
         prepDownloadSecond();
         prepDownloadThird();
@@ -119,11 +125,13 @@ public class AdBootDownloadManager implements iDownloaderListener {
     }
 
     private void prepDownloadFirst() {
+        System.out.println("prepDownload2");
         // TODO Auto-generated method stub
         if (mAdBootInfo == null) return;
         if (mAdBootInfo.CheckFirstImageUsable()) {
             if (!(mCurrentADBOOT == null || mCurrentADBOOT.video == null
                     || mCurrentADBOOT.video.creative == null)) {
+                System.out.println(mCurrentADBOOT.video.creative.URL);
                 adddownload(mCurrentADBOOT.video.creative.URL,
                         mCurrentADBOOT.video.creative.Hash,
                         mAdBootInfo.GetFirstSource());
@@ -132,11 +140,13 @@ public class AdBootDownloadManager implements iDownloaderListener {
     }
 
     private void prepDownloadSecond() {
+        System.out.println("prepDownload3");
         // TODO Auto-generated method stub
         if (mAdBootInfo == null) return;
         if (mAdBootInfo.CheckSecondImageUsable()) {
             if (!(mCurrentADBOOT == null || mCurrentADBOOT.video == null
                     || mCurrentADBOOT.video.creative2 == null)) {
+                System.out.println(mCurrentADBOOT.video.creative2.URL);
                 adddownload(mCurrentADBOOT.video.creative2.URL,
                         mCurrentADBOOT.video.creative2.Hash,
                         mAdBootInfo.GetSecondSource());
@@ -145,11 +155,13 @@ public class AdBootDownloadManager implements iDownloaderListener {
     }
 
     private void prepDownloadThird() {
+        System.out.println("prepDownload4");
         // TODO Auto-generated method stub
         if (mAdBootInfo == null) return;
         if (mAdBootInfo.CheckBootAnimationZipUsable()) {
             if (!(mCurrentADBOOT == null || mCurrentADBOOT.video == null
                     || mCurrentADBOOT.video.creative3 == null)) {
+                System.out.println(mCurrentADBOOT.video.creative3.URL);
                 adddownload(mCurrentADBOOT.video.creative3.URL,
                         mCurrentADBOOT.video.creative3.Hash,
                         mAdBootInfo.GetThirdSource());
@@ -158,14 +170,23 @@ public class AdBootDownloadManager implements iDownloaderListener {
     }
 
     private void adddownload(String url, String hashCode, String TargetFile) {
+        System.out.println("prepDownload5");
         Download download = new Download();
         download.URL = url;
         download.filehashCode = hashCode;
         download.TargetFile = TargetFile;
+        System.out.println(url+"_"+hashCode+"_"+TargetFile);
         if (download.isAviable()) {
-            mDownload.add(download);
-            download.addDownloaderListener(this);
-            AdDownloadManager.getInstance().AddDownload(download);
+            try {
+                System.out.println("prepDownload9"+download+"_mDownload::"+mDownload);
+                mDownload.add(download);
+                System.out.println("prepDownload10");
+                download.addDownloaderListener(this);
+                System.out.println("prepDownload11");
+                AdDownloadManager.getInstance().AddDownload(download);
+            }catch (Exception e){
+               e.printStackTrace();
+            }
         }
     }
 ////	private void CheckDownLoadFirst(){
@@ -353,11 +374,11 @@ public class AdBootDownloadManager implements iDownloaderListener {
 //	     //seconddownload.SetDownLoadListener(this);
 //	     mDownload.add(seconddownload);
 //		 //DownLoadManager.getInstance().AddDownload(seconddownload);
-//	  
+
 
 
     //for Listener
-    private List<Download> mDownload;
+    private List<Download> mDownload = new ArrayList<Download>();;
 
     private void checkDownloadfinish() {
         if (mDownload != null && mDownload.size() <= 0) {

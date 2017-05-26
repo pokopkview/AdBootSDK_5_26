@@ -1,16 +1,5 @@
 package com.joyplus.ad.addownload;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import android.content.Context;
 import android.text.TextUtils;
 import android.webkit.URLUtil;
@@ -26,6 +15,17 @@ import com.joyplus.ad.data.FileUtils;
 import com.joyplus.ad.mode.ReportMode;
 import com.joyplus.ad.mode.ReportModeController;
 import com.joyplus.ad.report.Report;
+
+import java.io.File;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class AdDownloadManager extends ReportModeController {
     private Context mContext;
@@ -59,6 +59,7 @@ public class AdDownloadManager extends ReportModeController {
 
     //interface for application
     public boolean AddDownload(Download url) {
+        System.out.println("prepDownload6");
         if (url == null) return false;
         return addReportUri(url);
     }
@@ -128,6 +129,7 @@ public class AdDownloadManager extends ReportModeController {
     }
 
     private File downloadFile(Download download, File adcache) {
+        System.out.println("downloadFile");
         HttpURLConnection connection = null;
         RandomAccessFile randomAccessFile = null;
         InputStream inputstream = null;
@@ -136,7 +138,7 @@ public class AdDownloadManager extends ReportModeController {
                 android.util.Log.d(Log.TAG, "why use unaviable url " + download.URL);
                 return null;
             }
-            //////////// prep download
+            //////////// prep
             File local = new File(AdFileManager.getInstance().GetBasePath(), DOWNLOAD_DOWNLOAD);
             if (local.exists()) {//make sure local file is not exists.
                 Log.d("Downloader remove temp first!!!!");
@@ -147,8 +149,7 @@ public class AdDownloadManager extends ReportModeController {
             connection = (HttpURLConnection) (new URL(download.URL)).openConnection();
             connection.setConnectTimeout(HttpManager.SOCKET_TIMEOUT);//
             connection.setRequestMethod("GET");
-
-            randomAccessFile = new RandomAccessFile(local, "rwd");
+                randomAccessFile = new RandomAccessFile(local, "rwd");
             inputstream = connection.getInputStream();
             byte[] buffer = new byte[1024 * 50];
             int length = -1;
@@ -175,6 +176,7 @@ public class AdDownloadManager extends ReportModeController {
             }
         } catch (Throwable e) {
             Log.d("downloadFile fail -->" + e.toString());
+            e.printStackTrace();
         } finally {
             try {
                 if (connection != null) connection.disconnect();
@@ -204,6 +206,7 @@ public class AdDownloadManager extends ReportModeController {
                 }
             }
         } catch (Throwable e) {
+
         }
     }
 
@@ -224,10 +227,10 @@ public class AdDownloadManager extends ReportModeController {
             }
             return 0;
         } catch (Throwable e) {
+
         }
         return -1;
     }
-
     private final static String DOWNLOAD_DOWNLOAD = "download_downloading";
     private final static String DOWNLOAD_FINISH = "download_finish";
 }

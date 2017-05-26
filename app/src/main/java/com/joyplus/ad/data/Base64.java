@@ -1,5 +1,7 @@
 package com.joyplus.ad.data;
 
+import android.util.Base64OutputStream;
+
 import java.io.UnsupportedEncodingException;
 
 public class Base64 {

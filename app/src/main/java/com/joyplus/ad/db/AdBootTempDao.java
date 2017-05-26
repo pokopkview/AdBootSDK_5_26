@@ -1,7 +1,5 @@
 package com.joyplus.ad.db;
 
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,11 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 
-import javax.naming.Context;
+import java.util.ArrayList;
+
 
 public class AdBootTempDao {
 
-    private final static boolean DEBUG = false;
+    private final static boolean DEBUG = true;
     private static AdBootTempDao dao = null;
     private Context context;
 
@@ -80,7 +79,7 @@ public class AdBootTempDao {
         try {
             ContentValues Value = AdBootImpressionInfo.GetContentValues(info);
             if (info != null) {
-                return database.update("adbootTemp_info", Value, null, null) > 0;
+                return database.update("adbootTemp_info", Value, "publisher_id=?", new String[]{info.publisher_id}) > 0;
             }
         } catch (Exception e) {
             e.printStackTrace();

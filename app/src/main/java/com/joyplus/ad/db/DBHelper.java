@@ -19,13 +19,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table if not exists cache_link(_id integer PRIMARY KEY AUTOINCREMENT,"
+                    +"publisher_id char,report_url char UNIQUE,type int,Count int,create_date TimeStamp NOT NULL DEFAULT (datetime('now','localtime')))");
         db.execSQL("create table if not exists impression_info(_id integer PRIMARY KEY AUTOINCREMENT,"
-                + "publisher_id char,ad_id char,ad_type char,display_num char,mImpressionUrl char,column1 char,column2 char,create_date TimeStamp NOT NULL DEFAULT (datetime('now','localtime')))");
+                + "publisher_id char UNIQUE,ad_id char,ad_type char,display_num char,mImpressionUrl char,column1 char,column2 char,create_date TimeStamp NOT NULL DEFAULT (datetime('now','localtime')))");
         db.execSQL("create table if not exists adbootTemp_info(_id integer PRIMARY KEY AUTOINCREMENT,"
-                + "publisher_id char,mImpressionUrl char,FirstSource char,SecondSource char,ThirdSource char,"
+                + "publisher_id char UNIQUE,mImpressionUrl char,FirstSource char,SecondSource char,ThirdSource char,"
                 + "miaozhen char,iresearch char,admaster char,nielsen char,Count int,create_date TimeStamp NOT NULL DEFAULT (datetime('now','localtime')))");
         db.execSQL("create table if not exists adbootReport_info(_id integer PRIMARY KEY AUTOINCREMENT,"
-                + "publisher_id char,mImpressionUrl char,FirstSource char,SecondSource char,ThirdSource char,"
+                + "publisher_id char UNIQUE,mImpressionUrl char,FirstSource char,SecondSource char,ThirdSource char,"
                 + "miaozhen char,iresearch char,admaster char,nielsen char,Count int,create_date TimeStamp NOT NULL DEFAULT (datetime('now','localtime')))");
     }
 

@@ -17,7 +17,7 @@ public class DownloaderListenerSet extends ModeListenerSet implements iDownloade
             }
             break;
             case FLAG_PROGRESS_CHANGE: {
-                ((iDownloaderListener) listener).DownloaderProgress((Download) objects[0], (Integer) objects[1], (Integer) objects[2]);
+                ((iDownloaderListener) listener).DownloaderProgress((Download) objects[0], (Long) objects[1], (Long) objects[2]);
             }
             break;
             case FLAG_STATE_FINISH: {

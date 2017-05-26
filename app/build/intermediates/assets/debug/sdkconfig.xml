@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--媒体平台相关配置-->
-<config xsi:noNamespaceSchemaLocation="SDKSchema.xsd"
+<SDKSchema
+    xsi:noNamespaceSchemaLocation="SDKSchema.xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <!--缓存队列设置-->
     <offlineCache>
@@ -314,4 +315,4 @@
         </company>
 
     </companies>
-</config>
+</SDKSchema>

@@ -1,5 +1,13 @@
 package com.joyplus.ad.data;
 
+import android.annotation.SuppressLint;
+import android.os.Environment;
+import android.os.StatFs;
+
+import com.joyplus.ad.AdSDKManager;
+import com.joyplus.ad.AdSDKManager.CUSTOMTYPE;
+import com.joyplus.ad.config.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,14 +15,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import com.joyplus.ad.AdSDKManager;
-import com.joyplus.ad.AdSDKManager.CUSTOMTYPE;
-import com.joyplus.ad.config.Log;
-
-import android.annotation.SuppressLint;
-import android.os.Environment;
-import android.os.StatFs;
 
 /**
  * File copy/delete/move
@@ -244,7 +244,7 @@ public class FileUtils {
     }
 
     //////////////////////////////////////////////////
-    //lenovo�ṩ�ķ���,ֻ�����������ʹ��
+    //lenovo�ṩ�ķ���,ֻ�����������ʹ� �?
     public static long getSystemFreeSpace() {
         File root = Environment.getDataDirectory();
         StatFs sf = new StatFs(root.getPath());

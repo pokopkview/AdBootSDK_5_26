@@ -1,15 +1,19 @@
 package com.joyplus.ad.data;
 
-import java.io.CharArrayWriter;
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.webkit.URLUtil;
+
+import com.joyplus.ad.AdBootDataUtil;
+import com.joyplus.ad.AdConfig;
+import com.joyplus.ad.config.Log;
+import com.joyplus.ad.data.TRACKINGURL.TYPE;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.joyplus.ad.config.Log;
-import com.joyplus.ad.data.TRACKINGURL.TYPE;
-
-import android.webkit.URLUtil;
+import java.io.CharArrayWriter;
 
 public class AdBootResponseHandler extends DefaultHandler {
 
@@ -24,10 +28,11 @@ public class AdBootResponseHandler extends DefaultHandler {
         contents.write(ch, start, length);
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @Override
     public void endElement(String uri, String localName, String qName)
             throws SAXException {
-        if (Debug) Log.d("Jas", "endElement() localName=" + localName);
+        if (true) Log.d("Jas", "endElement() localName=" + localName + "=======");
         if (CREATIVE.tag.equals(localName)) {
             if (mADBOOT.video != null && mADBOOT.video.creative != null)
                 mADBOOT.video.creative.URL = contents.toString().trim();
@@ -45,12 +50,31 @@ public class AdBootResponseHandler extends DefaultHandler {
                 mADBOOT.video.impressionurl = new IMPRESSIONURL();
                 mADBOOT.video.impressionurl.URL = impressionurl;
             }
+        } else if ("html5_url".equals(localName)) {
+            if (!contents.toString().trim().isEmpty()) {
+                AdBootDataUtil.setHtml5Url(contents.toString().trim());
+            }
+        } else if("maxsize".equals(localName)){
+            if(!contents.toString().trim().isEmpty()) {
+                String size = contents.toString().trim();
+                AdConfig.setMAXSIZE(Integer.parseInt(size));
+            }
+        } else if("push_mode".equals(localName)){
+            if(!contents.toString().trim().isEmpty()) {
+                AdBootDataUtil.setPushMode(contents.toString().trim());
+            }
+        }else if ("monitor_url".equals(localName)) {
+            if(contents.toString().trim() != "" && contents.toString().trim() != null){
+
+            }
         } else if ("trackingurl_miaozhen".equals(localName)) {
+            System.out.println(contents.toString().trim()+"=trackingurl_miaozhen");
             if (mADBOOT.video == null)
                 throw new SAXException("trackingurl_miaozhen");
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.MIAOZHEN)
                 throw new SAXException("trackingurl_miaozhen url");
             mTRACKINGURL.URL = contents.toString().trim();
+            System.out.println(mTRACKINGURL.URL+"trackingurl_miaozhen");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if ("trackingurl_iresearch".equals(localName)) {
@@ -59,6 +83,7 @@ public class AdBootResponseHandler extends DefaultHandler {
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.IRESEARCH)
                 throw new SAXException("trackingurl_iresearch url");
             mTRACKINGURL.URL = contents.toString().trim();
+            System.out.println(mTRACKINGURL.URL+"trackingurl_iresearch");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if ("trackingurl_admaster".equals(localName)) {
@@ -67,6 +92,7 @@ public class AdBootResponseHandler extends DefaultHandler {
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.ADMASTER)
                 throw new SAXException("trackingurl_admaster url");
             mTRACKINGURL.URL = contents.toString().trim();
+            System.out.println(mTRACKINGURL.URL+"trackingurl_admaster");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if ("trackingurl_nielsen".equals(localName)) {
@@ -75,6 +101,7 @@ public class AdBootResponseHandler extends DefaultHandler {
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.NIELSEN)
                 throw new SAXException("trackingurl_nielsen url");
             mTRACKINGURL.URL = contents.toString().trim();
+            System.out.println(mTRACKINGURL.URL+"trackingurl_nielsen");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if (DURATION.tag.equals(localName)) {
@@ -101,13 +128,13 @@ public class AdBootResponseHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName,
                              Attributes attributes) throws SAXException {
-        if (Debug) Log.d("Jas", "startElement() localName=" + localName + " attributes=" +
-                attributes.toString());
+        if (true) Log.d("Jas", "startElement() localName=" + localName + " attributes=" +
+                attributes.toString()+"=======");
         contents.reset();
         if (ADBOOT.tag.equals(localName)) {
             String TYPE = attributes.getValue("type");
             if (!ADBOOT.type.equals(TYPE))
-                throw new SAXException("Type(" + TYPE + ") is Unaviliable !!!!!");
+               // throw new SAXException("Type(" + TYPE + ") is Unaviliable !!!!!");
             mADBOOT.animation = attributes.getValue("animation");
         } else if (ABDOOTVIDEO.tag.equals(localName)) {
             if (mADBOOT.video != null) throw new SAXException("Video Tag more than one!!!");
@@ -186,6 +213,10 @@ public class AdBootResponseHandler extends DefaultHandler {
         } else if ("trackingurl_nielsen".equals(localName)) {
             mTRACKINGURL = new TRACKINGURL();
             mTRACKINGURL.Type = TYPE.NIELSEN;
+        } else if("monitor_url".equals(localName)){
+
+        } else if("html5_url".equals(localName)){
+            System.out.println(localName);
         }
     }
 

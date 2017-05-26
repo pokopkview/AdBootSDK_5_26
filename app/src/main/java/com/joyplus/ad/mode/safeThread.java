@@ -1,11 +1,11 @@
 package com.joyplus.ad.mode;
 
-import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import com.joyplus.ad.mode.inf.iListener;
 import com.joyplus.ad.mode.inf.iStateListener;
 import com.joyplus.ad.mode.set.StateListenerSet;
+
+import java.lang.Thread.UncaughtExceptionHandler;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class safeThread extends Thread implements UncaughtExceptionHandler, iListener {
     private StateListenerSet mStateListenerSet = new StateListenerSet();

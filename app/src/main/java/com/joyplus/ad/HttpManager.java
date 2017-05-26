@@ -1,11 +1,11 @@
 package com.joyplus.ad;
 
+import com.joyplus.ad.config.Log;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
-
-import com.joyplus.ad.config.Log;
 
 public class HttpManager {
 
@@ -32,7 +32,7 @@ public class HttpManager {
             return true;
         } catch (Throwable e) {
             Log.d("ReportServiceOneTime fail -->" + e.toString());
+            return false;
         }
-        return false;
     }
 }

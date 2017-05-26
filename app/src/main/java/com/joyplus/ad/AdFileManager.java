@@ -1,10 +1,10 @@
 package com.joyplus.ad;
 
-import java.io.File;
+import android.content.Context;
 
 import com.joyplus.ad.data.AdFileServer;
 
-import android.content.Context;
+import java.io.File;
 
 public class AdFileManager {
 

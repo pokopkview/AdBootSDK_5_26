@@ -1,12 +1,12 @@
 package com.joyplus.ad;
 
 
+import android.content.Context;
+
 import com.joyplus.ad.Monitor.AdMonitorManager;
 import com.joyplus.ad.addownload.AdDownloadManager;
 import com.joyplus.ad.collect.AdCollectManager;
 import com.joyplus.ad.report.AdReportManager;
-
-import android.content.Context;
 
 
 /* Define by Jas@20131125

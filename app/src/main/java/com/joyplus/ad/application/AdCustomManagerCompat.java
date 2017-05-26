@@ -97,7 +97,7 @@ public class AdCustomManagerCompat {
         return impressionurl;
     }
 
-    /////////////// createBaseReportURL
+    /////////////// createBaseReportURL，
     public static Uri.Builder createBaseReportURL() {
         return createBaseReportURL(PhoneManager.getInstance().GetCUSTOMINFO());
     }

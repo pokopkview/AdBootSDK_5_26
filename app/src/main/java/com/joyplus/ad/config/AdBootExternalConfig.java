@@ -1,16 +1,19 @@
 package com.joyplus.ad.config;
 
+import android.content.Context;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
-import android.content.Context;
 
 /*Define by Jas@20131125
  * use to config adboot by custom*/
 public class AdBootExternalConfig {
     private Context mContext;
-    private boolean LoadOK = false;
+    private boolean LoadOK = true;
     private Properties props;
     private final static String ConfigFile = "/com/joyplus/Config/adbootconfig.properties";
     /*key for ConfigFile*/
@@ -60,6 +63,13 @@ public class AdBootExternalConfig {
             return GetStringConfig(BaseURL, defineValue);
         } else if (mAdBootAssertExternalConfig != null && mAdBootAssertExternalConfig.getUseable()) {
             return mAdBootAssertExternalConfig.getBaseURL(defineValue);
+        }
+        return defineValue;
+    }
+
+    public String GetBaseConfigURL(String defineValue) {
+        if (LoadOK) {
+            return GetStringConfig("ConfigURL", defineValue);
         }
         return defineValue;
     }
@@ -137,9 +147,34 @@ public class AdBootExternalConfig {
     }
 
     private String GetStringConfig(String key, String defineValue) {
+        System.out.println(LoadOK);
         if (!LoadOK) return defineValue;
         String value = props.getProperty(key);
         if (value == null) return defineValue;
         return value;
+    }
+
+    public void setMaxSizeConfig(int value) {
+        FileInputStream fin = null;
+        FileOutputStream fos = null;
+        try {
+            File  files = new File("/com/joyplus/config/adbootconfig.properties");
+            fin = new FileInputStream(files);
+            fos = new FileOutputStream(files);
+            Properties mProps = new Properties();
+            mProps.load(fin);
+            fin.close();
+            mProps.setProperty(MAXSIZE,String.valueOf(value));
+            mProps.store(fos,"change maxsize");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fin.close();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

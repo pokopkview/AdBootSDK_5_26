@@ -1,10 +1,11 @@
 package com.joyplus.ad.application;
 
-import com.joyplus.ad.AdSDKManager;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
+
+import com.joyplus.ad.AdBootDataUtil;
+import com.joyplus.ad.AdSDKManager;
 
 public class CUSTOMINFO implements Parcelable {
     public enum DEVICETYPE {
@@ -78,7 +79,6 @@ public class CUSTOMINFO implements Parcelable {
             // TODO Auto-generated constructor stub
             SourceType = s;
         }
-
         public String toString() {
             return SourceType;
         }
@@ -100,6 +100,31 @@ public class CUSTOMINFO implements Parcelable {
     private String mOSV = "";//osv
     private int mDSS = 0;//dss
     private String mDSR = "";//dsr
+
+    protected CUSTOMINFO(Parcel in) {
+        mDEVICEMUMBER = in.readString();
+        mSN = in.readString();
+        mDEVICEMOVEMENT = in.readString();
+        mBRAND = in.readString();
+        mLastBootUpCount = in.readInt();
+        mMAC = in.readString();
+        mOS = in.readString();
+        mOSV = in.readString();
+        mDSS = in.readInt();
+        mDSR = in.readString();
+    }
+
+    public static final Creator<CUSTOMINFO> CREATOR = new Creator<CUSTOMINFO>() {
+        @Override
+        public CUSTOMINFO createFromParcel(Parcel in) {
+            return new CUSTOMINFO(in);
+        }
+
+        @Override
+        public CUSTOMINFO[] newArray(int size) {
+            return new CUSTOMINFO[size];
+        }
+    };
 
     public void SetOS(String os) {
         mOS = os;
@@ -177,6 +202,7 @@ public class CUSTOMINFO implements Parcelable {
     }
 
     public void SetSN(String m) {
+        AdBootDataUtil.setSN(m);
         mSN = m;
     }
 
