@@ -28,7 +28,7 @@ public class AdConfig {
     //end add by Jas
     private final static String mURL_KONKA_Report = "http://42.62.26.18:3099/konka/report";
 
-    private final static int DEFAULT_MAX = 5;
+    public final static int DEFAULT_MAX = 5;
     private final static int DEFAULT_CACHESIZE = 120;//120M
     private static int MAXSIZE = DEFAULT_MAX;
     private static int CACHESIZE = DEFAULT_CACHESIZE;
