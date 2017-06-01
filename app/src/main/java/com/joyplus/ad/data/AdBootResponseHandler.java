@@ -57,7 +57,12 @@ public class AdBootResponseHandler extends DefaultHandler {
         } else if("maxsize".equals(localName)){
             if(!contents.toString().trim().isEmpty()) {
                 String size = contents.toString().trim();
-                AdConfig.setMAXSIZE(Integer.parseInt(size));
+                try {
+                    AdConfig.setMAXSIZE(Integer.parseInt(size));
+                }catch (Exception e){
+                    //默认为5次
+                    AdConfig.setMAXSIZE(AdConfig.DEFAULT_MAX);
+                }
             }
         } else if("push_mode".equals(localName)){
             if(!contents.toString().trim().isEmpty()) {
@@ -216,7 +221,7 @@ public class AdBootResponseHandler extends DefaultHandler {
         } else if("monitor_url".equals(localName)){
 
         } else if("html5_url".equals(localName)){
-            System.out.println(localName);
+            //System.out.println(localName);
         }
     }
 
