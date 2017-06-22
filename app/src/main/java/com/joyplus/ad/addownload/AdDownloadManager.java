@@ -9,9 +9,10 @@ import com.joyplus.ad.AdFileManager;
 import com.joyplus.ad.AdSDKManager;
 import com.joyplus.ad.AdSDKManagerException;
 import com.joyplus.ad.HttpManager;
-import com.joyplus.ad.config.Log;
+import com.joyplus.ad.Config.Log;
 import com.joyplus.ad.data.AdHash;
 import com.joyplus.ad.data.FileUtils;
+import com.joyplus.ad.data.MD5Util;
 import com.joyplus.ad.mode.ReportMode;
 import com.joyplus.ad.mode.ReportModeController;
 import com.joyplus.ad.report.Report;
@@ -23,8 +24,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class AdDownloadManager extends ReportModeController {
@@ -59,7 +62,6 @@ public class AdDownloadManager extends ReportModeController {
 
     //interface for application
     public boolean AddDownload(Download url) {
-        System.out.println("prepDownload6");
         if (url == null) return false;
         return addReportUri(url);
     }
@@ -86,12 +88,12 @@ public class AdDownloadManager extends ReportModeController {
 
     private void dispatcherDoanload(Download download) {
         try {
+            checkdiskspace(0);
             download.DownloaderStateChange(download, Download.STATE_DOWNLOAD);//notify state change first.
             if (download.isAviable()) {
                 File filedir = AdFileManager.getInstance().GetBasePath();
                 File adcache = new File(filedir, download.filehashCode);//local cache file
-                if (!(adcache.exists() && //first we check local ad file
-                        TextUtils.equals(download.filehashCode, AdHash.getFileHash(adcache)))) {
+                if (!(adcache.exists() && TextUtils.equals(download.filehashCode, AdHash.getFileHash(adcache)))) {
                     //we download resource first
                     File downloaded = downloadFile(download, adcache);
                     if (downloaded != null && downloaded.exists()) {//here rename to load
@@ -101,7 +103,8 @@ public class AdDownloadManager extends ReportModeController {
                         download.DownloaderStateChange(download, Download.STATE_FAIL);
                     }
                 }
-                /////////////////////////
+                //
+
                 adcache = new File(filedir, download.filehashCode);//local cache file
                 if ((adcache.exists() && //second we check local ad file and copy to target
                         TextUtils.equals(download.filehashCode, AdHash.getFileHash(adcache)))) {
@@ -118,6 +121,7 @@ public class AdDownloadManager extends ReportModeController {
                         FileUtils.Chmod(target);
                     }
                 }
+
             }
         } catch (Throwable e) {
             Log.d("dispatcherDoanload fail -->" + e.toString());
@@ -129,7 +133,6 @@ public class AdDownloadManager extends ReportModeController {
     }
 
     private File downloadFile(Download download, File adcache) {
-        System.out.println("downloadFile");
         HttpURLConnection connection = null;
         RandomAccessFile randomAccessFile = null;
         InputStream inputstream = null;
@@ -149,13 +152,13 @@ public class AdDownloadManager extends ReportModeController {
             connection = (HttpURLConnection) (new URL(download.URL)).openConnection();
             connection.setConnectTimeout(HttpManager.SOCKET_TIMEOUT);//
             connection.setRequestMethod("GET");
-                randomAccessFile = new RandomAccessFile(local, "rwd");
+            randomAccessFile = new RandomAccessFile(local, "rwd");
             inputstream = connection.getInputStream();
             byte[] buffer = new byte[1024 * 50];
             int length = -1;
             long compeleteSize = 0;
             long downloadfileSize = connection.getContentLength();
-            checkdiskspace(downloadfileSize);
+//            checkdiskspace(downloadfileSize);
             ///download began
             while (((length = inputstream.read(buffer)) != -1)) {
                 randomAccessFile.write(buffer, 0, length);
@@ -196,9 +199,14 @@ public class AdDownloadManager extends ReportModeController {
 
     private void checkdiskspace(long downloadfileSize) {
         // TODO Auto-generated method stub
-        //here we check disk space
         try {
             File dir = AdFileManager.getInstance().GetBasePath();
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date());
+            if ((c.get(Calendar.DAY_OF_WEEK) - 1) == Calendar.FRIDAY) {
+                //机器如果在周五开机则回对缓存的广告进行一次清理，如果长时间周五不开机，缓存到120m则会触发另外的删除操作清理缓存
+                deleteOffLineAd(dir);
+            }
             long maxcachesize = AdConfig.GetCacheSize() * 1024 * 1024;//MB-->B
             while ((dir.length() + downloadfileSize) > maxcachesize) {//we should del some thing before
                 if (dellastModifiedfile(dir) <= 0) {//make sure its break;
@@ -206,7 +214,25 @@ public class AdDownloadManager extends ReportModeController {
                 }
             }
         } catch (Throwable e) {
+            Log.d("AdBootSDK_deletefile",e.getMessage());
+        }
+    }
 
+    private void deleteOffLineAd(File dir) {
+        try {
+            File[] fleList = dir.listFiles();
+            if (fleList != null && fleList.length > 0) {
+                List<File> files = Arrays.asList(fleList);
+                for (File file : files) {
+                    System.out.println(System.currentTimeMillis() + ":" + file.lastModified());
+                    if (System.currentTimeMillis() - file.lastModified() > 604800000 && file.isFile()) {
+                        //如果最后一次修改的时间大于一周，将对文件进行删除
+                        file.delete();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Log.d("AdBootSDK_Checkfile", e.getMessage());
         }
     }
 
@@ -214,7 +240,7 @@ public class AdDownloadManager extends ReportModeController {
         try {
             File[] list = dir.listFiles();
             if (list != null && list.length > 0) {
-                ArrayList<File> files = (ArrayList<File>) Arrays.asList(list);
+                List<File> files = Arrays.asList(list);
                 Collections.sort(files, new Comparator<File>() {
                     @Override
                     public int compare(File arg0, File arg1) {
@@ -222,7 +248,12 @@ public class AdDownloadManager extends ReportModeController {
                         return (int) (arg0.lastModified() - arg1.lastModified());
                     }
                 });
-                files.get(0).delete();
+                for (File file1 : files) {
+                    if (file1.isFile()) {
+                        file1.delete();
+                        return -1;
+                    }
+                }
                 return 1;
             }
             return 0;
@@ -231,6 +262,27 @@ public class AdDownloadManager extends ReportModeController {
         }
         return -1;
     }
+
+    /**
+     * 便利文件夹内的文件，如果有下载不完整的文件，将对文件进行删除
+     * @param file
+     */
+    private void checkFileHashAndDelete(File file){
+        File [] files = file.listFiles();
+        for(int i =0;i<files.length;i++){
+
+
+            if(!files[i].getName().equals(AdHash.getFileHash(files[i]))){
+                files[i].delete();
+            }
+        }
+
+
+    }
+
+
+
+
     private final static String DOWNLOAD_DOWNLOAD = "download_downloading";
     private final static String DOWNLOAD_FINISH = "download_finish";
 }
