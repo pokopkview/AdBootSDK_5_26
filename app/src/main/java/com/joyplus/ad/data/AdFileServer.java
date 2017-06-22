@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import com.joyplus.ad.AdConfig;
 import com.joyplus.ad.AdSDKFeature;
 import com.joyplus.ad.PublisherId;
-import com.joyplus.ad.config.Log;
+import com.joyplus.ad.Config.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,6 +40,10 @@ public class AdFileServer {
                 BASEPATH = new File(AdConfig.GetBasePath());
                 Log.d("Jas", "BASEPATH++++++++++" + BASEPATH);
                 //if(Mkdir(BASEPATH)){
+                //文件不存在则创建文件
+                if(!BASEPATH.exists()){
+                    BASEPATH.mkdirs();
+                }
                 USEABLE = true;
                 return;
                 // }
