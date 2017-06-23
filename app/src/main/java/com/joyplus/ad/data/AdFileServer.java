@@ -27,6 +27,7 @@ public class AdFileServer {
     private Object mObject = new Object();
     private boolean USEABLE = false;//for this file server useable
     private File BASEPATH;
+    private long BASEPATHSIZE;
 
     public AdFileServer(Context context) {
         mContext = context;
@@ -44,6 +45,7 @@ public class AdFileServer {
                 if(!BASEPATH.exists()){
                     BASEPATH.mkdirs();
                 }
+                BASEPATHSIZE = getBasePathSize(BASEPATH);
                 USEABLE = true;
                 return;
                 // }
@@ -62,6 +64,19 @@ public class AdFileServer {
         else USEABLE = true;
         if (USEABLE) BASEPATH.mkdirs();
 
+    }
+    private long getBasePathSize(File file){
+        long size = 0;
+        File [] files = file.listFiles();
+        for(int i =0;i<files.length;i++){
+            if(files[i].isFile()){
+                size+=files[i].length();
+            }
+        }
+        return size;
+    }
+    public void SetBasePathSize(long size){
+        BASEPATHSIZE-=size;
     }
 
     private File MkSDCarddir(Context context) {
@@ -97,6 +112,10 @@ public class AdFileServer {
 
         }
         return BASEPATH;
+    }
+
+    public long getBASEPATHSIZE(){
+        return BASEPATHSIZE;
     }
 
     public boolean UseAble() {

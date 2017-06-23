@@ -96,15 +96,15 @@ public class AdDownloadManager extends ReportModeController {
                 if (!(adcache.exists() && TextUtils.equals(download.filehashCode, AdHash.getFileHash(adcache)))) {
                     //we download resource first
                     File downloaded = downloadFile(download, adcache);
-                    if (downloaded != null && downloaded.exists()) {//here rename to load
+                    if (downloaded != null && downloaded.exists() && download.filehashCode.equals(AdHash.getFileHash(downloaded))) {//here rename to load
                         downloaded.renameTo(new File(filedir, AdHash.getFileHash(downloaded)));
                         download.DownloaderStateChange(download, Download.STATE_SUCCESS);
                     } else {
+                        downloaded.delete();
                         download.DownloaderStateChange(download, Download.STATE_FAIL);
                     }
                 }
                 //
-
                 adcache = new File(filedir, download.filehashCode);//local cache file
                 if ((adcache.exists() && //second we check local ad file and copy to target
                         TextUtils.equals(download.filehashCode, AdHash.getFileHash(adcache)))) {
@@ -121,7 +121,6 @@ public class AdDownloadManager extends ReportModeController {
                         FileUtils.Chmod(target);
                     }
                 }
-
             }
         } catch (Throwable e) {
             Log.d("dispatcherDoanload fail -->" + e.toString());
@@ -158,8 +157,6 @@ public class AdDownloadManager extends ReportModeController {
             int length = -1;
             long compeleteSize = 0;
             long downloadfileSize = connection.getContentLength();
-//            checkdiskspace(downloadfileSize);
-            ///download began
             while (((length = inputstream.read(buffer)) != -1)) {
                 randomAccessFile.write(buffer, 0, length);
                 compeleteSize += length;
@@ -203,12 +200,12 @@ public class AdDownloadManager extends ReportModeController {
             File dir = AdFileManager.getInstance().GetBasePath();
             Calendar c = Calendar.getInstance();
             c.setTime(new Date());
-            if ((c.get(Calendar.DAY_OF_WEEK) - 1) == Calendar.FRIDAY) {
+            if (c.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
                 //机器如果在周五开机则回对缓存的广告进行一次清理，如果长时间周五不开机，缓存到120m则会触发另外的删除操作清理缓存
                 deleteOffLineAd(dir);
             }
             long maxcachesize = AdConfig.GetCacheSize() * 1024 * 1024;//MB-->B
-            while ((dir.length() + downloadfileSize) > maxcachesize) {//we should del some thing before
+            while ((AdFileManager.getInstance().GetBasePathSize() + downloadfileSize) > 53444263) {//we should del some thing before
                 if (dellastModifiedfile(dir) <= 0) {//make sure its break;
                     break;
                 }
@@ -224,8 +221,7 @@ public class AdDownloadManager extends ReportModeController {
             if (fleList != null && fleList.length > 0) {
                 List<File> files = Arrays.asList(fleList);
                 for (File file : files) {
-                    System.out.println(System.currentTimeMillis() + ":" + file.lastModified());
-                    if (System.currentTimeMillis() - file.lastModified() > 604800000 && file.isFile()) {
+                    if ((System.currentTimeMillis() - file.lastModified() > 604800000) && file.isFile()) {
                         //如果最后一次修改的时间大于一周，将对文件进行删除
                         file.delete();
                     }
@@ -248,10 +244,11 @@ public class AdDownloadManager extends ReportModeController {
                         return (int) (arg0.lastModified() - arg1.lastModified());
                     }
                 });
-                for (File file1 : files) {
-                    if (file1.isFile()) {
+                for(File file1 : files){
+                    if(file1.isFile()) {
+                        AdFileManager.getInstance().SetBasePathSize(file1.length());
                         file1.delete();
-                        return -1;
+                        return 1;
                     }
                 }
                 return 1;
@@ -261,23 +258,6 @@ public class AdDownloadManager extends ReportModeController {
 
         }
         return -1;
-    }
-
-    /**
-     * 便利文件夹内的文件，如果有下载不完整的文件，将对文件进行删除
-     * @param file
-     */
-    private void checkFileHashAndDelete(File file){
-        File [] files = file.listFiles();
-        for(int i =0;i<files.length;i++){
-
-
-            if(!files[i].getName().equals(AdHash.getFileHash(files[i]))){
-                files[i].delete();
-            }
-        }
-
-
     }
 
 

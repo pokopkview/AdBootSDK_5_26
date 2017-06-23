@@ -38,6 +38,13 @@ public class AdFileManager {
         return mAdBootFileServer.GetBasePath();
     }
 
+    public long GetBasePathSize(){
+        return mAdBootFileServer.getBASEPATHSIZE();
+    }
+    public void SetBasePathSize(long size){
+        mAdBootFileServer.SetBasePathSize(size);
+    }
+
     public boolean isCacheAviable(int cahcesize) {
         return mAdBootFileServer.isCacheAviable(cahcesize);
     }
