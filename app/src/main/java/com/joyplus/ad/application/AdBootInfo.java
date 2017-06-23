@@ -26,6 +26,24 @@ public class AdBootInfo implements Parcelable {
         }
     }
 
+    protected AdBootInfo(Parcel in) {
+        FirstSource = in.readString();
+        SecondSource = in.readString();
+        ThirdSource = in.readString();
+    }
+
+    public static final Creator<AdBootInfo> CREATOR = new Creator<AdBootInfo>() {
+        @Override
+        public AdBootInfo createFromParcel(Parcel in) {
+            return new AdBootInfo(in);
+        }
+
+        @Override
+        public AdBootInfo[] newArray(int size) {
+            return new AdBootInfo[size];
+        }
+    };
+
     public AdBootInfo CreateNew() {
         return new AdBootInfo(this);
     }

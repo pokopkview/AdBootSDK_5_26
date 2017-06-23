@@ -1,4 +1,4 @@
-package com.joyplus.ad.config;
+package com.joyplus.ad.Config;
 
 import com.joyplus.ad.AdConfig;
 
@@ -27,6 +27,7 @@ public final class Log {
     }
 
     public static int d(String msg) {
+        if (!AdConfig.GetDebugEnable()) return LOG_FAIL;
         return d(TAG, msg);
     }
 

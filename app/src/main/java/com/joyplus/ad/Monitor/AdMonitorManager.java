@@ -8,7 +8,7 @@ import com.joyplus.ad.AdBootDataUtil;
 import com.joyplus.ad.AdSDKManager;
 import com.joyplus.ad.AdSDKManagerException;
 import com.joyplus.ad.HttpManager;
-import com.joyplus.ad.config.Log;
+import com.joyplus.ad.Config.Log;
 import com.joyplus.ad.data.MD5Util;
 import com.joyplus.ad.data.PhoneService;
 import com.joyplus.ad.data.TRACKINGURL;
