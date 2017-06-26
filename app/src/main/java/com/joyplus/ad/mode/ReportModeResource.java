@@ -35,7 +35,6 @@ public class ReportModeResource {
 
     ////////////////////////////////////////////////////////////////
     public boolean addReportUri(ReportMode reportMode) {
-        System.out.println("prepDownload8");
         if (addReportMode(reportMode)) {
             notifyReport();
             return true;

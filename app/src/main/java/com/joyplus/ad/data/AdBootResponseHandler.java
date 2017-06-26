@@ -18,7 +18,6 @@ import java.io.CharArrayWriter;
 public class AdBootResponseHandler extends DefaultHandler {
 
     private ADBOOT mADBOOT = null;
-    private final static boolean Debug = false;
     private CharArrayWriter contents = new CharArrayWriter();
     private TRACKINGURL mTRACKINGURL = null;
 
@@ -32,7 +31,7 @@ public class AdBootResponseHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName)
             throws SAXException {
-        if (true) Log.d("Jas", "endElement() localName=" + localName + "=======");
+        Log.d("Jas", "endElement() localName=" + localName + "=======");
         if (CREATIVE.tag.equals(localName)) {
             if (mADBOOT.video != null && mADBOOT.video.creative != null)
                 mADBOOT.video.creative.URL = contents.toString().trim();
@@ -73,13 +72,11 @@ public class AdBootResponseHandler extends DefaultHandler {
 
             }
         } else if ("trackingurl_miaozhen".equals(localName)) {
-            System.out.println(contents.toString().trim()+"=trackingurl_miaozhen");
             if (mADBOOT.video == null)
                 throw new SAXException("trackingurl_miaozhen");
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.MIAOZHEN)
                 throw new SAXException("trackingurl_miaozhen url");
             mTRACKINGURL.URL = contents.toString().trim();
-            System.out.println(mTRACKINGURL.URL+"trackingurl_miaozhen");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if ("trackingurl_iresearch".equals(localName)) {
@@ -88,7 +85,6 @@ public class AdBootResponseHandler extends DefaultHandler {
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.IRESEARCH)
                 throw new SAXException("trackingurl_iresearch url");
             mTRACKINGURL.URL = contents.toString().trim();
-            System.out.println(mTRACKINGURL.URL+"trackingurl_iresearch");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if ("trackingurl_admaster".equals(localName)) {
@@ -97,7 +93,6 @@ public class AdBootResponseHandler extends DefaultHandler {
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.ADMASTER)
                 throw new SAXException("trackingurl_admaster url");
             mTRACKINGURL.URL = contents.toString().trim();
-            System.out.println(mTRACKINGURL.URL+"trackingurl_admaster");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if ("trackingurl_nielsen".equals(localName)) {
@@ -106,7 +101,6 @@ public class AdBootResponseHandler extends DefaultHandler {
             if (mTRACKINGURL == null || mTRACKINGURL.Type != TYPE.NIELSEN)
                 throw new SAXException("trackingurl_nielsen url");
             mTRACKINGURL.URL = contents.toString().trim();
-            System.out.println(mTRACKINGURL.URL+"trackingurl_nielsen");
             mADBOOT.video.trackingurl.add(mTRACKINGURL);
             mTRACKINGURL = null;//wanting for next add.
         } else if (DURATION.tag.equals(localName)) {
@@ -127,13 +121,13 @@ public class AdBootResponseHandler extends DefaultHandler {
     @Override
     public void startDocument() throws SAXException {
         mADBOOT = new ADBOOT();
-        if (Debug) Log.d("Jas", "startDocument()");
+        Log.d("Jas", "startDocument()");
     }
 
     @Override
     public void startElement(String uri, String localName, String qName,
                              Attributes attributes) throws SAXException {
-        if (true) Log.d("Jas", "startElement() localName=" + localName + " attributes=" +
+        Log.d("Jas", "startElement() localName=" + localName + " attributes=" +
                 attributes.toString()+"=======");
         contents.reset();
         if (ADBOOT.tag.equals(localName)) {

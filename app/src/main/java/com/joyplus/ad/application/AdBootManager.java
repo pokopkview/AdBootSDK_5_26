@@ -68,7 +68,6 @@ public class AdBootManager extends AdMode {
         mDownloadManager = new AdBootDownloadManager(mContext, this, mAdBoot);
     }
 
-
     @Override
     public void RequestAD() {
         // TODO Auto-generated method stub
@@ -109,7 +108,6 @@ public class AdBootManager extends AdMode {
         mAdBootRequest = new AdBootRequest(AdBootManager.this, mAdBoot);
         ADBOOT mADBOOT = null;
         int Count = TIME;
-
 //        while ((Count--) > 0) {
 //            try {
 //                Thread.sleep(500);
@@ -126,7 +124,6 @@ public class AdBootManager extends AdMode {
             mADBOOT = null;
             mADBOOT = mAdBootRequest.sendRequest();
         } catch (RequestException e){
-            System.out.println(e.getMessage());
             mADBOOT = null;
         }
 
@@ -134,7 +131,6 @@ public class AdBootManager extends AdMode {
             final String html5_url = AdBootDataUtil.getHtml5Url();
             Random random = new Random();
             int count = (random.nextInt(60)+1)*1000;
-            System.out.println(count);
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
@@ -158,14 +154,12 @@ public class AdBootManager extends AdMode {
             Log.d(AdBootDataUtil.getPushMode()+"__"+AdConfig.GetMaxSize());
             if(AdBootDataUtil.getPushMode().equals(AdConfig.PUSH_NOW)){
                 //上报本次请求的数据
-
-
-
                 Log.d("push_now");
                 SetReportInfoNow(mADBOOT);
                 new AdBootThread(mContext, ((mAdBoot != null && mAdBoot.GetCUSTOMINFO() != null) ? mAdBoot.GetCUSTOMINFO() : null)).StartReport();
                 mDownloadManager.UpdateADBOOT(mADBOOT, mAdBootRequest.GetFileName(), mPublisherId);
             }else {
+                Log.d("push_old");
                 SetReportInfo();
                 AdBootTempDao.getInstance(mContext).Remove(mPublisherId.GetPublisherId());//remove it first.
                 new AdBootThread(mContext, ((mAdBoot != null && mAdBoot.GetCUSTOMINFO() != null) ? mAdBoot.GetCUSTOMINFO() : null)).StartReport();
@@ -184,7 +178,6 @@ public class AdBootManager extends AdMode {
         if(dao.GetLast()!=null){
             return;
         }
-        System.out.println("infos="+infos);
         if(null != infos){
             for (AdBootImpressionInfo info : infos) {
                 dao.InsertOneInfo(info);
@@ -199,19 +192,15 @@ public class AdBootManager extends AdMode {
         List<AdBootImpressionInfo> infos = tempDao.GetAllTemp();
         if(infos!=null){
             for(AdBootImpressionInfo info : infos){
-                System.out.println("info.mImpressionUrl="+info.mImpressionUrl+",mADBOOTs.video.impressionurl="+mADBOOTs.video.impressionurl);
                 if(info.mImpressionUrl.equals(mADBOOTs.video.impressionurl.URL)){
-                    System.out.println("info.Count+1");
                     count = info.Count+1;
                 }else {
-                    System.out.println("InsertOneInfo(info, 1)");
                     AdBootDao.getInstance(mContext).InsertOneInfo(info, 1);
                 }
             }
         }
         AdBootImpressionInfo info = new AdBootImpressionInfo();
         info.publisher_id = mPublisherId.GetPublisherId();
-        System.out.println("count="+count);
         info.Count= count;
         if(mAdBoot.GetAdBootInfo()!=null) {
             info.FirstSource = mAdBoot.GetAdBootInfo().GetFirstSource();
@@ -273,8 +262,6 @@ public class AdBootManager extends AdMode {
 
     public void getHtmlwork(String url, getModel models) {
         try {
-            //System.out.println("geturl:" + url);
-           // String strs = url.replace("http://42.62.50.187", "http://106.75.55.63");
             URL url1 = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
             connection.setRequestMethod("GET");
@@ -286,7 +273,6 @@ public class AdBootManager extends AdMode {
             while ((line = in.readLine()) != null) {
                 buffer.append(line);
             }
-            System.out.println(buffer.toString());
             JSONArray jsonObject = new JSONObject(buffer.toString()).getJSONArray("url_info");
             URLModel model = new URLModel();
             List<URLModel.UrlInfoEntity> lists = new ArrayList<URLModel.UrlInfoEntity>();

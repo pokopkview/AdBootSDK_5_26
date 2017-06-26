@@ -8,7 +8,7 @@ import com.joyplus.ad.addownload.Download;
 import com.joyplus.ad.application.AdBoot;
 import com.joyplus.ad.application.AdBootInfo;
 import com.joyplus.ad.application.AdBootManager;
-import com.joyplus.ad.Config.Log;
+import com.joyplus.ad.config.Log;
 import com.joyplus.ad.data.ADBOOT;
 import com.joyplus.ad.data.CODE;
 import com.joyplus.ad.data.FileUtils;

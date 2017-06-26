@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import com.joyplus.ad.AdConfig;
 import com.joyplus.ad.AdSDKFeature;
 import com.joyplus.ad.PublisherId;
-import com.joyplus.ad.Config.Log;
+import com.joyplus.ad.config.Log;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -9,10 +9,9 @@ import com.joyplus.ad.AdFileManager;
 import com.joyplus.ad.AdSDKManager;
 import com.joyplus.ad.AdSDKManagerException;
 import com.joyplus.ad.HttpManager;
-import com.joyplus.ad.Config.Log;
+import com.joyplus.ad.config.Log;
 import com.joyplus.ad.data.AdHash;
 import com.joyplus.ad.data.FileUtils;
-import com.joyplus.ad.data.MD5Util;
 import com.joyplus.ad.mode.ReportMode;
 import com.joyplus.ad.mode.ReportModeController;
 import com.joyplus.ad.report.Report;
@@ -22,7 +21,6 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -33,6 +31,7 @@ import java.util.List;
 public class AdDownloadManager extends ReportModeController {
     private Context mContext;
     private static AdDownloadManager mInstance;
+    private long WEEK = 604800000;
 
     public static AdDownloadManager getInstance() {
         return mInstance;
@@ -205,7 +204,7 @@ public class AdDownloadManager extends ReportModeController {
                 deleteOffLineAd(dir);
             }
             long maxcachesize = AdConfig.GetCacheSize() * 1024 * 1024;//MB-->B
-            while ((AdFileManager.getInstance().GetBasePathSize() + downloadfileSize) > 53444263) {//we should del some thing before
+            while ((AdFileManager.getInstance().GetBasePathSize() + downloadfileSize) > maxcachesize) {//we should del some thing before
                 if (dellastModifiedfile(dir) <= 0) {//make sure its break;
                     break;
                 }
@@ -221,7 +220,7 @@ public class AdDownloadManager extends ReportModeController {
             if (fleList != null && fleList.length > 0) {
                 List<File> files = Arrays.asList(fleList);
                 for (File file : files) {
-                    if ((System.currentTimeMillis() - file.lastModified() > 604800000) && file.isFile()) {
+                    if ((System.currentTimeMillis() - file.lastModified() > WEEK) && file.isFile()) {
                         //如果最后一次修改的时间大于一周，将对文件进行删除
                         file.delete();
                     }
@@ -259,9 +258,6 @@ public class AdDownloadManager extends ReportModeController {
         }
         return -1;
     }
-
-
-
 
     private final static String DOWNLOAD_DOWNLOAD = "download_downloading";
     private final static String DOWNLOAD_FINISH = "download_finish";

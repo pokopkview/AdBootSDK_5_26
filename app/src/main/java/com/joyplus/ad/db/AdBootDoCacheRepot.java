@@ -1,12 +1,10 @@
 package com.joyplus.ad.db;
 
 import android.content.Context;
-import android.os.Handler;
 
 import com.joyplus.ad.HttpManager;
 import com.joyplus.ad.config.Log;
 
-import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;

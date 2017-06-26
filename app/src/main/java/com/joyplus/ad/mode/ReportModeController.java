@@ -119,7 +119,6 @@ public abstract class ReportModeController {
 
     /////////////////
     public boolean addReportUri(final ReportMode report) {
-        System.out.println("prepDownload7");
         if (isTearDown() || mReportResource == null) return false;
         checkController();
         return mReportResource.addReportUri(report);

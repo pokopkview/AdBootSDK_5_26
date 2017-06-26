@@ -1,4 +1,4 @@
-package com.joyplus.ad.Config;
+package com.joyplus.ad.config;
 
 import com.joyplus.ad.AdConfig;
 

@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.joyplus.ad.config.Log;
-import com.joyplus.ad.data.ImpressionInfo;
 
 import java.util.ArrayList;
 import java.util.List;

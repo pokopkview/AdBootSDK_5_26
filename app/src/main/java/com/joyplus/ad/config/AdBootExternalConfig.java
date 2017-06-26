@@ -15,7 +15,7 @@ public class AdBootExternalConfig {
     private Context mContext;
     private boolean LoadOK = true;
     private Properties props;
-    private final static String ConfigFile = "/com/joyplus/Config/adbootconfig.properties";
+    private final static String ConfigFile = "/com/joyplus/ad/config/adbootconfig.properties";
     /*key for ConfigFile*/
     private final static String AdBootDebugEnable = "AdBootDebugEnable";
     private final static String BaseURL = "BaseURL";
@@ -147,7 +147,6 @@ public class AdBootExternalConfig {
     }
 
     private String GetStringConfig(String key, String defineValue) {
-        System.out.println(LoadOK);
         if (!LoadOK) return defineValue;
         String value = props.getProperty(key);
         if (value == null) return defineValue;

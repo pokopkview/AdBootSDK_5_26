@@ -39,7 +39,6 @@ public class Download extends com.joyplus.ad.mode.ReportMode implements iDownloa
     }
 
     public boolean Check() {
-        System.out.println("Check__"+URL+"_"+TargetFile+"_"+filehashCode);
         if (!URLUtil.isNetworkUrl(URL)
                 || TextUtils.isEmpty(TargetFile)
                 || TextUtils.isEmpty(filehashCode)) return false;
