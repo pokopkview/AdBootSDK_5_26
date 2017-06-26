@@ -76,7 +76,6 @@ public class Report extends com.joyplus.ad.mode.ReportMode {
         return true;
     }
     public void reportOTH(final String info) {
-        System.out.println(info);
         if (info.contains("miaozhen")) {
             MZMonitor.retryCachedRequests(mContext);
             MZMonitor.adTrack(mContext, refactoryThridURL(info));

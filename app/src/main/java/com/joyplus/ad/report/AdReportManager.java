@@ -2,14 +2,11 @@ package com.joyplus.ad.report;
 
 import java.util.List;
 
-import com.joyplus.ad.AdConfig;
 import com.joyplus.ad.AdSDKManager;
 import com.joyplus.ad.AdSDKManagerException;
 import com.joyplus.ad.HttpManager;
 import com.joyplus.ad.config.Log;
-import com.joyplus.ad.db.AdBootReportInfo;
 import com.joyplus.ad.db.AdBootReprtDao;
-import com.joyplus.ad.db.AdBootTempDao;
 import com.joyplus.ad.mode.ReportModeController;
 
 import android.content.Context;
