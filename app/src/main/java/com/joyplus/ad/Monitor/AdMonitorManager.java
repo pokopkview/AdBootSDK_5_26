@@ -17,6 +17,7 @@ import com.joyplus.ad.db.AdBootReprtDao;
 import com.joyplus.ad.mode.ReportMode;
 import com.joyplus.ad.mode.ReportModeController;
 import com.miaozhen.mzmonitor.MZMonitor;
+import com.miaozhen.tvmonitor.MZTVMonitor;
 
 import java.util.List;
 
@@ -100,8 +101,10 @@ public class AdMonitorManager extends ReportModeController {
                 break;
                 case MIAOZHEN: {
                     if (mContext != null) {
-                        MZMonitor.retryCachedRequests(mContext);
-                        MZMonitor.adTrack(mContext, refactoryThridURL(iTrackingurl.URL));
+                        MZTVMonitor.retryCachedRequests(mContext);
+                        MZTVMonitor.adTrack(mContext, refactoryThridURL(iTrackingurl.URL));
+//                        MZMonitor.retryCachedRequests(mContext);
+//                        MZMonitor.adTrack(mContext, refactoryThridURL(iTrackingurl.URL));
                     }
                 }
                 break;
